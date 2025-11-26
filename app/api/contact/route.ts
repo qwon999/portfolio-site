@@ -2,7 +2,7 @@ import { NextResponse } from "next/server"
 
 const RESEND_API_URL = "https://api.resend.com/emails"
 const TO_EMAIL = "hqwon99@gmail.com"
-const FROM_EMAIL = "Portfolio Contact <contact@hagyuwon.info>"
+const FROM_EMAIL = "Portfolio Contact <contact@xn--9h0b668b2ik.info>"
 
 type ContactPayload = {
   name: string
