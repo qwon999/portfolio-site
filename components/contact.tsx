@@ -15,13 +15,32 @@ export function Contact() {
     email: "",
     message: "",
   })
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle")
+  const [error, setError] = useState("")
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // 여기에 실제 폼 제출 로직을 구현하세요
-    console.log("Form submitted:", formData)
-    alert("메시지가 전송되었습니다!")
-    setFormData({ name: "", email: "", message: "" })
+    setStatus("loading")
+    setError("")
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      })
+
+      if (!res.ok) {
+        const body = await res.json().catch(() => ({}))
+        throw new Error(body?.error || "메일 전송에 실패했습니다.")
+      }
+
+      setStatus("success")
+      setFormData({ name: "", email: "", message: "" })
+    } catch (err) {
+      setStatus("error")
+      setError(err instanceof Error ? err.message : "메일 전송 중 오류가 발생했습니다.")
+    }
   }
 
   return (
@@ -116,8 +135,15 @@ export function Contact() {
                 />
               </div>
 
-              <Button type="submit" className="w-full h-12 bg-primary text-primary-foreground hover:bg-primary/90">
-                메시지 전송
+              {error && <p className="text-sm text-red-600">{error}</p>}
+              {status === "success" && <p className="text-sm text-green-600">메시지가 전송되었습니다.</p>}
+
+              <Button
+                type="submit"
+                disabled={status === "loading"}
+                className="w-full h-12 bg-primary text-primary-foreground hover:bg-primary/90 disabled:opacity-70"
+              >
+                {status === "loading" ? "전송 중..." : "메시지 전송"}
               </Button>
             </form>
           </Card>
