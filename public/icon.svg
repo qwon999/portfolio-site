@@ -1,0 +1,18 @@
+<svg width="180" height="180" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    :root { color-scheme: light dark; }
+    @media (prefers-color-scheme: light) {
+      .bg { fill: #0f172a; }
+      .fg { stroke: #e2e8f0; }
+      .accent { stroke: #38bdf8; }
+    }
+    @media (prefers-color-scheme: dark) {
+      .bg { fill: #f8fafc; }
+      .fg { stroke: #0f172a; }
+      .accent { stroke: #0ea5e9; }
+    }
+  </style>
+  <rect class="bg" x="12" y="12" width="156" height="156" rx="32" />
+  <path class="accent" d="M60 70C78 44 122 44 130 72V108C122 136 78 136 60 112" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" />
+  <path class="fg" d="M68 54V126M112 54V126M68 92H112" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" />
+</svg>
