@@ -6,7 +6,7 @@ const experiences = [
   {
     title: "뤼튼테크놀로지스",
     role: "Agent Developer",
-    period: "2025.12 - 현재",
+    period: "2025.12 - 2026.02",
     type: "work",
   },
   {
